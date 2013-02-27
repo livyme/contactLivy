@@ -172,6 +172,9 @@
     else if ((sender == mpg) || (sender == lper100km)){
         y = 80;
     }
+    else {
+        y=0;
+    }
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
     self.view.center = CGPointMake(self.originalCenter.x, y);
