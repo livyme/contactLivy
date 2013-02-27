@@ -48,7 +48,7 @@
 //}
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
 {
-    [self dismissModalViewControllerAnimated: YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

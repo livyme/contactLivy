@@ -35,36 +35,12 @@
 
 #pragma mark - View lifecycle
 
-/*
- // Implement loadView to create a view hierarchy programmatically, without using a nib.
- - (void)loadView
- {
- }
- */
 
-/*
+
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
- - (void)viewDidLoad
- {
+- (void)viewDidLoad {
  [super viewDidLoad];
  }
- */
-
-//- (void)viewDidUnload{
-//     [self setFirstNumber:nil];
-//    [self setSecondNumber:nil];
-//    [self setResult:nil];
-//    [self setSliderA:nil];
-//    [self setSliderB:nil];
-//    [super viewDidUnload];
-//    // Release any retained subviews of the main view.
-//    // e.g. self.myOutlet = nil;
-//}
-
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-//    // Return YES for supported orientations
-//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-//}
 
 
 #pragma mark - Methods
@@ -78,7 +54,7 @@
 
 - (void) updateTextfields {
     firstNumber.text = [NSString stringWithFormat:@"%.2f",firstNumberValue];
-    secondNumber.text = [NSString stringWithFormat:@"%.2f%", secondNumberValue];
+    secondNumber.text = [NSString stringWithFormat:@"%.2f", secondNumberValue];
 }
 - (void) updateSliders {
     sliderA.value = firstNumberValue;
@@ -107,12 +83,7 @@
 #pragma mark - touch responses
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
 	// When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-	if (theTextField == firstNumber) {
-		[firstNumber resignFirstResponder];
-        // Invoke the method that changes the greeting.
-	} else if (theTextField == secondNumber) {
-        [secondNumber resignFirstResponder];
-    }
+    [theTextField resignFirstResponder];
     [self updateLabel];
 
 	return YES;

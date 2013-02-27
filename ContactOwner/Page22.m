@@ -86,7 +86,7 @@
 - (void) restoreFrame {
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:0.25];
-  self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y-25);
+  self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y-45);
   [UIView commitAnimations];
 }
 
@@ -173,7 +173,7 @@
     y = 100;
   }
   else if ((sender == mpg) || (sender == lper100km)){
-    y = 30;
+    y = 80;
   }
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:0.25];

@@ -31,7 +31,6 @@
 		DB3DDAC414F84177005CE604 /* Page2.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3DDAC314F84176005CE604 /* Page2.m */; };
 		DB5C0C4B1538BC9900964057 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5C0C4A1538BC9900964057 /* WebViewController.m */; };
 		DB5C0C521538C60500964057 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5C0C511538C60500964057 /* AVFoundation.framework */; };
-		DBD98C0A153F237F00B488C9 /* iPadStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBD98C09153F237F00B488C9 /* iPadStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +71,6 @@
 		DB5C0C491538BC9900964057 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		DB5C0C4A1538BC9900964057 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		DB5C0C511538C60500964057 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		DBD98C09153F237F00B488C9 /* iPadStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPadStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +123,6 @@
 				5213822914F5C2BB00068B3C /* AppDelegate.h */,
 				5213822A14F5C2BB00068B3C /* AppDelegate.m */,
 				DBD98C0C153F246400B488C9 /* iPhone */,
-				DBD98C0D153F246F00B488C9 /* iPad */,
 				5217990C14FA969D006F8B2A /* Brain.h */,
 				5217990D14FA969D006F8B2A /* Brain.m */,
 				5213822114F5C2BB00068B3C /* Supporting Files */,
@@ -181,14 +178,6 @@
 				5213823614F5C2BC00068B3C /* FlipsideViewController.m */,
 			);
 			name = iPhone;
-			sourceTree = "<group>";
-		};
-		DBD98C0D153F246F00B488C9 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-				DBD98C09153F237F00B488C9 /* iPadStoryboard.storyboard */,
-			);
-			name = iPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,7 +238,6 @@
 				52FAD4C714F5E08E00335FA1 /* thanks2.jpg in Resources */,
 				DB3DDA6414F83AC1005CE604 /* delete.png in Resources */,
 				529274AA1539337300373FB5 /* 1.png in Resources */,
-				DBD98C0A153F237F00B488C9 /* iPadStoryboard.storyboard in Resources */,
 				523390C116DE7E7900A37369 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

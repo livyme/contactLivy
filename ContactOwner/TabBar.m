@@ -10,7 +10,7 @@
 
 @implementation TabBar
 - (IBAction)back:(id)sender {
-   [self dismissModalViewControllerAnimated: YES];
+   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
