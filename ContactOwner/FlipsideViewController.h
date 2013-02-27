@@ -11,13 +11,13 @@
 @class FlipsideViewController;
 
 @protocol FlipsideViewControllerDelegate
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
+//- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
 @end
 
-@interface FlipsideViewController : UIViewController
+@interface FlipsideViewController : UIViewController 
 
-@property (weak, nonatomic) IBOutlet id <FlipsideViewControllerDelegate> delegate;
-
-- (IBAction)done:(id)sender;
+@property (retain, nonatomic) IBOutlet id <FlipsideViewControllerDelegate> delegate;
+@property (nonatomic, retain) IBOutlet UILabel *label;
+@property (nonatomic, retain) IBOutlet UIImageView *imgThx;
 
 @end

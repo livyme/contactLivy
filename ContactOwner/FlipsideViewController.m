@@ -11,6 +11,7 @@
 @implementation FlipsideViewController
 
 @synthesize delegate = _delegate;
+@synthesize label,  imgThx;
 
 - (void)awakeFromNib
 {
@@ -18,11 +19,6 @@
     [super awakeFromNib];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
-}
 
 #pragma mark - View lifecycle
 
@@ -30,33 +26,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
+    [label setText:@"Thank you for finding my iPhone.\nYour effort in returning this iPhone is greatly appreciated."];
+    self.imgThx.image = [UIImage imageNamed:@"thanks2.jpg"];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -71,9 +42,14 @@
 
 #pragma mark - Actions
 
-- (IBAction)done:(id)sender
+//- (IBAction)done:(id)sender
+//{
+//    [self.delegate flipsideViewControllerDidFinish:self];
+//}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
 {
-    [self.delegate flipsideViewControllerDidFinish:self];
+    [self dismissModalViewControllerAnimated: YES];
+    
 }
 
 @end

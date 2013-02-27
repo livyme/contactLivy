@@ -7,8 +7,14 @@
 //
 
 #import "FirstPage.h"
+#import "Brain.h"
 
 @implementation FirstPage
+@synthesize secondNumber;
+@synthesize result;
+@synthesize sliderA;
+@synthesize sliderB;
+@synthesize firstNumber;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,31 +36,96 @@
 #pragma mark - View lifecycle
 
 /*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
+ // Implement loadView to create a view hierarchy programmatically, without using a nib.
+ - (void)loadView
+ {
+ }
+ */
 
 /*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
+ // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+ - (void)viewDidLoad
+ {
+ [super viewDidLoad];
+ }
+ */
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+//- (void)viewDidUnload{
+//     [self setFirstNumber:nil];
+//    [self setSecondNumber:nil];
+//    [self setResult:nil];
+//    [self setSliderA:nil];
+//    [self setSliderB:nil];
+//    [super viewDidUnload];
+//    // Release any retained subviews of the main view.
+//    // e.g. self.myOutlet = nil;
+//}
+
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+//    // Return YES for supported orientations
+//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//}
+
+
+#pragma mark - Methods
+
+- (void) updateLabel {
+     if (firstNumberValue>100 || firstNumberValue<-100 || secondNumberValue>100 || secondNumberValue <-100) 
+        result.text = @"Overflow";
+    else
+        result.text = [NSString stringWithFormat:@"%.2f", firstNumberValue + secondNumberValue];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void) updateTextfields {
+    firstNumber.text = [NSString stringWithFormat:@"%.2f",firstNumberValue];
+    secondNumber.text = [NSString stringWithFormat:@"%.2f%", secondNumberValue];
+}
+- (void) updateSliders {
+    sliderA.value = firstNumberValue;
+    sliderB.value = secondNumberValue;
+}
+
+-(void) hideKeyboard {
+    [firstNumber resignFirstResponder];
+    [secondNumber resignFirstResponder];
+}
+
+- (IBAction)dateEntered {
+    firstNumberValue = [firstNumber.text floatValue];
+    secondNumberValue = [secondNumber.text floatValue];
+    [self updateLabel];
+    [self updateSliders];
+}
+
+- (IBAction)slidersSlide {
+    firstNumberValue = sliderA.value;
+    secondNumberValue = sliderB.value;
+    [self updateTextfields];
+    [self updateLabel];
+}
+
+#pragma mark - touch responses
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+	// When the user presses return, take focus away from the text field so that the keyboard is dismissed.
+	if (theTextField == firstNumber) {
+		[firstNumber resignFirstResponder];
+        // Invoke the method that changes the greeting.
+	} else if (theTextField == secondNumber) {
+        [secondNumber resignFirstResponder];
+    }
+    [self updateLabel];
+
+	return YES;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self hideKeyboard];
+    [super touchesBegan:touches withEvent:event];
+
+}
+- (IBAction)enterPressed:(id)sender {
+    NSString *s = [sender currentTitle];
+    firstNumber.text = s;    
 }
 
 @end

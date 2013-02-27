@@ -6,11 +6,17 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+NSString * const myPhoneNumber = @"203-LIU-QIAN";
+
 #import "MainViewController.h"
 
+
 @implementation MainViewController
+@synthesize flashButton;
 
 @synthesize flipsidePopoverController = _flipsidePopoverController;
+@synthesize callButton, cautionLabel;
+@synthesize AVSession;
 
 - (void)didReceiveMemoryWarning
 {
@@ -22,46 +28,22 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+  [super viewDidLoad];
+  [self.callButton setTitle:myPhoneNumber forState:UIControlStateNormal];
+	[self.cautionLabel setText:@"This iPhone belongs to Livy.\n If found, \nplease tap below to contact my wife"];
+    // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
-}
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+//{
+//    // Return YES for supported orientations
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+//        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+//    } else {
+//        return YES;
+//    }
+//}
 
 #pragma mark - Flipside View Controller
 
@@ -103,4 +85,64 @@
     }
 }
 
+-(IBAction)callOwner:(id)sender { 
+    NSString *callNumber;
+    callNumber = [@"tel:" stringByAppendingString:myPhoneNumber];
+    NSLog(@"%@", callNumber);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: callNumber]];
+
+}
+
+- (void)toggleFlashlight
+{
+  AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+  
+  if (device.torchMode == AVCaptureTorchModeOff)
+  {
+    // Create an AV session
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    
+    // Create device input and add to current session
+    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error: nil];
+    [session addInput:input];
+    
+    // Create video output and add to current session
+    AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
+    [session addOutput:output];
+    
+    // Start session configuration
+    [session beginConfiguration];
+    [device lockForConfiguration:nil];
+    
+    // Set torch to on
+    [device setTorchMode:AVCaptureTorchModeOn];
+    
+    [device unlockForConfiguration];
+    [session commitConfiguration];
+    
+    // Start the session
+    [session startRunning];
+    
+    // Keep the session around
+    [self setAVSession:session];
+    
+  }
+  else
+  {
+    [AVSession stopRunning];
+  }
+}
+
+- (IBAction)flashlight:(id)sender {
+  AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+  if ([device hasTorch] == YES) {
+    [self toggleFlashlight];
+  }
+}
+
+
+- (void)viewDidUnload {
+  [self setFlashButton:nil];
+  [super viewDidUnload];
+}
 @end

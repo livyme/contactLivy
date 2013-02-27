@@ -9,5 +9,8 @@
 #import "TabBar.h"
 
 @implementation TabBar
+- (IBAction)back:(id)sender {
+   [self dismissModalViewControllerAnimated: YES];
+}
 
 @end

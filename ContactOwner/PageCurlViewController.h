@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PageCurlViewController : UIViewController
+@interface PageCurlViewController : UIViewController {
+    NSMutableArray *listOfItems;
+}
+
+@property (nonatomic,retain) IBOutlet UILabel *label;
+@property (nonatomic,retain) NSMutableArray *listOfItems;
 
 @end

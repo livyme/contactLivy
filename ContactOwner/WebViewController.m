@@ -13,6 +13,9 @@
 @end
 
 @implementation WebViewController
+@synthesize textField;
+@synthesize activityIndicator;
+@synthesize webView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,10 +30,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+  activityIndicator.hidden = YES;
 }
 
 - (void)viewDidUnload
 {
+  [self setTextField:nil];
+  [self setActivityIndicator:nil];
+  [self setWebView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -38,6 +45,22 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)editingEndByReturn:(id)sender {
+  NSString *userInput = [@"http://" stringByAppendingString: textField.text];
+  NSURL *url = [NSURL URLWithString:userInput];
+  [webView loadRequest:[NSURLRequest requestWithURL:url]];
+}
+ 
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+  activityIndicator.hidden = NO;
+  [activityIndicator startAnimating];
+}
+
+-(void) webViewDidFinishLoad:(UIWebView *)webView {
+  [activityIndicator stopAnimating];
+  activityIndicator.hidden = YES;
 }
 
 @end
